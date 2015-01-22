@@ -43,9 +43,13 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'selenium'
+
 group :test do
   gem 'cucumber-rails', :require => false
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
 end
 
+gem 'omniauth'
+gem 'omniauth-facebook', '1.4.0'
