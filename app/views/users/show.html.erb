@@ -1,0 +1,26 @@
+<h1>Home Page</h1>
+
+<div id="user-widget">
+  <% if current_user %>
+    Welcome <strong><%= current_user.name %></strong>!
+    <%= link_to "Sign out", signout_path, id: "sign_out" %>
+  <% else %>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+  <% end %>
+</div>
+
+<div id="add-articles">
+  <h3>Please</h3>
+  <%= form_for @article, :url => create_article_path, :html => {:method => :post} do |f| %>
+    <%= f.label :link %>
+    <%= f.text_field :link %>
+    <%= submit_tag "Create" %>
+  <% end %>
+</div>
+
+<div id="show-articles">
+  <h3>Articles</h3>
+    <% @articles.each do |article| %>
+      <h5><%= article.link %></h5>
+    <% end %> 
+</div>

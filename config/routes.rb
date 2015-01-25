@@ -7,6 +7,12 @@ Rails.application.routes.draw do
 
   root 'sessions#index'
 
+  get 'users/home', to: 'users#show', as: 'home'
+
+  #resources :articles
+
+  post 'articles/create' => 'articles#create', as: :create_article
+
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
