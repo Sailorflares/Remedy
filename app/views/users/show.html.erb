@@ -10,11 +10,11 @@
 </div>
 
 <div id="add-articles">
-  <h3>Please</h3>
+  <h3>Add an Article</h3>
   <%= form_for @article, :url => create_article_path, :html => {:method => :post} do |f| %>
-    <%= f.label :link %>
+    <%= f.label :link, "Link:" %>
     <%= f.text_field :link %>
-    <%= f.label :tag_list, "tags:" %>
+    <%= f.label :tag_list, "Tags:" %>
     <%= f.text_field :tag_list, :placeholder => 'separated by commas' %>
     <%= submit_tag "Create" %>
   <% end %>
