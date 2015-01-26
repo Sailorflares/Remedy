@@ -2,6 +2,6 @@ class UsersController < ApplicationController
 
   def show
     @article = Article.new
-    @articles = Article.all
+    @articles = current_user.articles
   end
 end

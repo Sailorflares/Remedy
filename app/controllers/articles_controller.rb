@@ -11,8 +11,11 @@ class ArticlesController < ApplicationController
     if @article
       @article.tag_list.add(params["article"]["tag_list"], :parse => true)
       @article.save
+      @article.users << current_user
+      TitlesWorker.perform_async(@article.id)
+    else
+      #need to redirect somewhere if something goes wrong here
     end
-    TitlesWorker.perform_async(@article.id)
     redirect_to home_url(current_user.id)
   end
 end
