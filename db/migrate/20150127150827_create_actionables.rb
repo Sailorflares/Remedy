@@ -1,0 +1,8 @@
+class CreateActionables < ActiveRecord::Migration
+  def change
+    create_table :actionables do |t|
+
+      t.timestamps null: false
+    end
+  end
+end
