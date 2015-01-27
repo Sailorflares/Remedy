@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
 
+  def index
+    redirect_to home_url(session[:user_id]) if current_user
+  end
+
   def create
     user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id

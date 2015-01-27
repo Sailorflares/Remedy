@@ -1,0 +1,21 @@
+<div id="show-articles">
+  <h3>Articles</h3>
+    <% @articles.each do |article| %>
+      <h5><%= article.link %></h5>
+      <h5><%= article.title %></h5>
+      <% article.tags.each do |tag| %>
+        <span><%=tag%></span>
+      <%end%>
+    <% end %> 
+</div>
+
+<div id="add-articles">
+  <h3>Add an Article</h3>
+  <%= form_for @article, :url => create_article_path, :html => {:method => :post} do |f| %>
+    <%= f.label :link, "Link:" %>
+    <%= f.text_field :link %>
+    <%= f.label :tag_list, "Tags:" %>
+    <%= f.text_field :tag_list, :placeholder => 'separated by commas' %>
+    <%= submit_tag "Create" %>
+  <% end %>
+</div>
