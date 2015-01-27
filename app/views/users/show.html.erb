@@ -9,6 +9,8 @@
   <% end %>
 </div>
 
+<%= link_to "See all actionables", "/actions" %>
+
 <div id="add-articles">
   <h3>Add an Article</h3>
   <%= form_for @article, :url => create_article_path, :html => {:method => :post} do |f| %>
@@ -18,6 +20,25 @@
     <%= f.text_field :tag_list, :placeholder => 'separated by commas' %>
     <%= submit_tag "Create" %>
   <% end %>
+</div>
+
+<div id="add-actionables">
+  <h3>Add an Action</h3>
+  <%= form_for @actionable, :url => create_actionable_path, :html => {:method => :post} do |f| %>
+    <%= f.label :title, "Title:" %>
+    <%= f.text_field :title %>
+    <%= f.label :text, "Text:" %>
+    <%= f.text_field :text%>
+    <%= submit_tag "Create" %>
+  <% end %>
+</div>
+
+<div id="show-actionables">
+  <h3>Actions</h3> 
+    <% @actionables.each do |actionable| %>
+      <h5><%= actionable.title %></h5>
+      <h5><%= actionable.text %></h5>
+    <% end %> 
 </div>
 
 <div id="show-articles">

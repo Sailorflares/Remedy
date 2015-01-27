@@ -9,9 +9,12 @@ Rails.application.routes.draw do
 
   get 'users/home', to: 'users#show', as: 'home'
 
+  get '/actions', to: 'actionables#show'
+
   #resources :articles
 
   post 'articles/create' => 'articles#create', as: :create_article
+  post 'actionables/create' => 'actionables#create', as: :create_actionable
 
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]

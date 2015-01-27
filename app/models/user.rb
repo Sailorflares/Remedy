@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
   has_many :user_articles
   has_many :articles, through: :user_articles
+  
+  has_many :user_actionables
+  has_many :actionables, through: :user_actionables
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider

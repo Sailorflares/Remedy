@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150125210846) do
+ActiveRecord::Schema.define(version: 20150127155718) do
+
+  create_table "actionables", force: :cascade do |t|
+    t.string   "title"
+    t.string   "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "articles", force: :cascade do |t|
     t.string   "link"
@@ -39,6 +46,13 @@ ActiveRecord::Schema.define(version: 20150125210846) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+
+  create_table "user_actionables", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "actionable_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "user_articles", force: :cascade do |t|
     t.integer  "user_id"
