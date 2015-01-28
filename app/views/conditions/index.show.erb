@@ -1,0 +1,6 @@
+<div id="show-conditions">
+  <h3>All Conditions</h3>
+    <% @conditions.each do |condition|%>
+      <%= link_to condition.name, condition_path(condition.id)%><br>
+    <% end %>
+</div>

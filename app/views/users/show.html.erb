@@ -1,17 +1,37 @@
 <h1>Home Page</h1>
 
-<div id="add-actionables">
+<div id="add-condition">
+  <h3>Add a Condition you're trying to improve</h3>
+  <%= form_for @condition, :url => create_condition_path, :html => {:method => :post} do |f| %>
+    <%= f.label :name, "Name:" %>
+    <%= f.text_field :name %><br>
+    <%= submit_tag "Create" %>
+  <% end %>
+</div>
+
+<div id="show-conditions">
+  <h3>Your Conditions</h3>
+    <% @conditions.each do |condition|%>
+      <%= link_to condition.name, condition_path(condition.id)%><br>
+    <% end %>
+</div>
+
+<div id="add-actionable">
   <h3>Add an Action</h3>
   <%= form_for @actionable, :url => create_actionable_path, :html => {:method => :post} do |f| %>
     <%= f.label :title, "Title:" %>
     <%= f.text_field :title %><br>
     <%= f.label :text, "Description:" %>
     <%= f.text_field :text%><br>
+    <%= f.fields_for :condition do |condition_form| %>
+        <%= condition_form.label :id, "Condition:" %>
+        <%= condition_form.collection_select :id, @conditions, :id, :name %>
+    <% end %><br>
     <%= submit_tag "Create" %>
   <% end %>
 </div>
 
-<div id="show-actionables">
+<div id="show-actionable">
   <h3>Actions</h3> 
     <% @actionables.each do |actionable| %>
        <div class="panel panel-default">
@@ -19,7 +39,8 @@
           <h3 class="panel-title"><%= actionable.title %></h3>
         </div>
         <div class="panel-body">
-          <%= actionable.text %>
+          <%= actionable.text %><br>
+          <%= actionable.conditions.first.name if actionable.conditions.first %>
         </div>
       </div> 
     <% end %> 

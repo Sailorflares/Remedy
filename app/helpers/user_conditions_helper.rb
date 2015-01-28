@@ -1,0 +1,2 @@
+module UserConditionsHelper
+end
