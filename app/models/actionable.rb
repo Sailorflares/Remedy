@@ -4,4 +4,5 @@ class Actionable < ActiveRecord::Base
 
   has_many :condition_actionables
   has_many :conditions, through: :condition_actionables
+
 end

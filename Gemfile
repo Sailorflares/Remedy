@@ -23,11 +23,21 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'recurrence'
+
+gem "watu_table_builder", :require => "table_builder"
+
 gem 'nokogiri'
 
 gem 'sidekiq'
 
 gem 'acts-as-taggable-on', '~> 3.4'
+
+gem "binding_of_caller"
+
+group :development do
+  gem "better_errors"
+end
 
 gem 'sinatra', :require => nil
 # Use ActiveModel has_secure_password
