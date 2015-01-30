@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'recurrence'
 
+gem 'fullcalendar-rails'
+
 gem "watu_table_builder", :require => "table_builder"
 
 gem 'nokogiri'
