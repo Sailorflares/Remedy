@@ -2,7 +2,7 @@
   $(document).ready(function() {
 
       $('#calendar').fullCalendar({
-          // put your options and callbacks here
+          events: '/user/:id/events.json'
       })
 
   });
@@ -35,6 +35,19 @@
     <%= f.fields_for :condition do |condition_form| %>
         <%= condition_form.label :id, "Condition:" %>
         <%= condition_form.collection_select :id, @conditions, :id, :name %>
+    <% end %><br>
+    <%= submit_tag "Create" %>
+  <% end %>
+</div>
+
+<div id="add-actionable-event">
+  <h3>Add an Actionable Event</h3>
+  <%= form_for @actionableevent, :url => create_actionable_event_path, :html => {:method => :post} do |f| %>
+    <%= f.label :days_between_events, "Frequency:" %>
+    <%= f.text_field :days_between_events %><br>
+    <%= f.fields_for :actionable do |actionable_form| %>
+        <%= actionable_form.label :id, "Action:" %>
+        <%= actionable_form.collection_select :id, @actionables, :id, :title %>
     <% end %><br>
     <%= submit_tag "Create" %>
   <% end %>

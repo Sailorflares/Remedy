@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   root 'sessions#index'
 
-  get 'users/home', to: 'users#show', as: 'home'
+  get 'user/:id', to: 'users#show', as: 'home'
 
   get 'conditions', to: 'conditions#index', as: :conditions_index
   get 'conditions/:id', to: 'conditions#show', as: 'condition'
@@ -15,11 +15,14 @@ Rails.application.routes.draw do
 
   get '/actions', to: 'actionables#index'
 
+  get '/user/:id/events', to: 'users#events_calendar', as: :events_calendar
+
   #resources :articles
 
   post 'articles/create' => 'articles#create', as: :create_article
   post 'actionables/create' => 'actionables#create', as: :create_actionable
   post 'conditions/create' => 'conditions#create', as: :create_condition
+  post 'actionable_events/create' => 'actionable_events#create', as: :create_actionable_event
 
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]

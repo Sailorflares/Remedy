@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150127192707) do
+ActiveRecord::Schema.define(version: 20150130035029) do
+
+  create_table "actionable_events", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "actionable_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "days_between_events"
+    t.string   "title"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  create_table "actionable_recurrences", force: :cascade do |t|
+    t.integer  "days_between_recurrences"
+    t.integer  "actionable_id"
+    t.integer  "user_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "actionables", force: :cascade do |t|
     t.string   "title"
@@ -36,6 +55,13 @@ ActiveRecord::Schema.define(version: 20150127192707) do
 
   create_table "conditions", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "occurrences", force: :cascade do |t|
+    t.date     "date"
+    t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

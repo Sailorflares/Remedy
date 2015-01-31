@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :user_conditions
   has_many :conditions, through: :user_conditions
 
+  has_many :actionable_events
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
@@ -18,4 +20,21 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
+
+  def calendar_json(start_date, end_date)
+    json_array = []
+    actionable_events.each do |actionable_event|
+      actionable_event.events.each do |date|
+        if (start_date..end_date).include?(date)
+          json_array << {"title" => actionable_event.title, "start" => date}
+        end
+      end
+    end
+    return json_array
+  end
+
+  def hello
+    puts "World!"
+  end
+
 end

@@ -30,6 +30,16 @@ gem 'sidekiq'
 gem 'acts-as-taggable-on', '~> 3.4'
 
 gem 'sinatra', :require => nil
+
+gem 'pry'
+
+gem "binding_of_caller"
+
+group :development do
+  gem "better_errors"
+end
+
+gem 'recurrence'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
