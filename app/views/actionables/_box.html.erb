@@ -11,8 +11,8 @@
           <p><%= actionable.text %></p>
           <p><%= actionable.conditions.first.name if actionable.conditions.first %></p>
           <% if @user_actions.include?(actionable.id)%>
-            <p> You're on the calendar! </p>
-          <% else%>
+            <p> <%= @event_days_hash[actionable.id] %> Days in Use </p>
+          <% else %>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".actionable-event-modal">Put it into action!</button>
           <% end %>  
         </div>

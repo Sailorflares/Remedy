@@ -39,4 +39,19 @@ class User < ActiveRecord::Base
     return event_ids
   end
 
+  def daysInUse(actionable_id)
+    a_e = ActionableEvent.find_by(user_id: self.id, actionable_id: actionable_id)
+    days = Date.today - a_e.start_date
+    return days.to_i
+  end
+
+  def event_days_hash
+  # Note this currently only functions when event doesn't have multiple starts & stops (actionable_events) 
+    event_days = {}
+    act_event_ids.each do |id|
+      event_days[id] = daysInUse(id) 
+    end
+    return event_days
+  end
+
 end

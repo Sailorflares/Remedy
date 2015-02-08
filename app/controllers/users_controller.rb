@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @actionables = current_user.actionables
     @conditions = current_user.conditions
     @user_actions = current_user.act_event_ids
+    @event_days_hash = current_user.event_days_hash
   end
 
   def events_calendar
