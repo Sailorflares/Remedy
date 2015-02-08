@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get '/user/:id/events', to: 'users#events_calendar', as: :events_calendar
 
-  #resources :articles
+  resources :articles
 
   post 'articles/create' => 'articles#create', as: :create_article
   post 'actionables/create' => 'actionables#create', as: :create_actionable

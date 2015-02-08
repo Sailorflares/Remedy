@@ -33,8 +33,10 @@ class User < ActiveRecord::Base
     return json_array
   end
 
-  def hello
-    puts "World!"
+  def act_event_ids
+    event_ids = []
+    actionable_events.each { |a_e| event_ids << a_e.actionable_id }
+    return event_ids
   end
 
 end

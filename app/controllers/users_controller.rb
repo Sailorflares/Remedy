@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @articles = current_user.articles
     @actionables = current_user.actionables
     @conditions = current_user.conditions
+    @user_actions = current_user.act_event_ids
   end
 
   def events_calendar

@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
   require 'open-uri'
 
   def new
+    @articles = Article.all
     @article = Article.new
   end
 
