@@ -17,12 +17,13 @@ Rails.application.routes.draw do
 
   get '/user/:id/events', to: 'users#events_calendar', as: :events_calendar
 
-  resources :articles
+ 
 
   post 'articles/create' => 'articles#create', as: :create_article
   post 'actionables/create' => 'actionables#create', as: :create_actionable
   post 'conditions/create' => 'conditions#create', as: :create_condition
   post 'actionable_events/create' => 'actionable_events#create', as: :create_actionable_event
+  post 'feelings/create' => 'feelings#create', as: :create_feeling
 
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]

@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     @condition = Condition.new
     @actionable = Actionable.new
     @article = Article.new
+    @feeling = Feeling.new
     @actionableevent = ActionableEvent.new
     @articles = current_user.articles
     @actionables = current_user.actionables
