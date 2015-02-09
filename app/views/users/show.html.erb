@@ -1,9 +1,11 @@
 <script>
   $(document).ready(function() {
 
-      $('#calendar').fullCalendar({
-          events: '/user/:id/events.json'
-      })
+
+    $('#calendar').fullCalendar({
+      //loading: function(){ if done, delete spinning thing },
+      events: '/user/:id/events.json'
+    })
 
   });
 </script>
