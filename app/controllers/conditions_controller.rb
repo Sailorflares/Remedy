@@ -2,11 +2,7 @@ class ConditionsController < ApplicationController
 
   def create
     @condition = Condition.find_or_create_by(name: params["condition"]["name"])
-    if @condition
-      @condition.users << current_user
-    else
-      #need to redirect somewhere if something goes wrong here
-    end
+    @condition.users << current_user
     redirect_to home_url(current_user.id)
   end
 

@@ -9,10 +9,6 @@ class ActionableEventsController < ApplicationController
       :days_between_events => params['actionable_event']['days_between_events'],
       :title => actionable.title
     })
-    if ae 
-      redirect_to home_url(current_user.id)
-    else
-      #need those error conditions
-    end
+    redirect_to home_url(current_user.id)
   end
 end
