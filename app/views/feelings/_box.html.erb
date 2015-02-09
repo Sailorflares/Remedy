@@ -6,7 +6,7 @@
       <div class="panel-body">
         <%= form_for @feeling, :url => create_feeling_path, :html => {:method => :post} do |f| %>
           <%= f.label :rating, "Rating:" %>
-          <%= f.text_field :rating %>
+          <%= f.select :rating, (1..10)%>
           <%= f.submit %>
         <% end %>
       </div>
