@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :user_conditions
   has_many :conditions, through: :user_conditions
 
-  has_many :actionable_events
+  has_many :recurring_events
 
   has_many :feelings
 
@@ -25,24 +25,24 @@ class User < ActiveRecord::Base
 
   def calendar_json(start_date, end_date)
     json_array = []
-    actionable_events.each do |actionable_event|
-      actionable_event.events.each do |date|
+    recurring_events.each do |recurring_event|
+      recurring_event.events.each do |date|
         if (start_date..end_date).include?(date)
-          json_array << {"title" => actionable_event.title, "start" => date}
+          json_array << {"title" => recurring_event.title, "start" => date}
         end
       end
     end
     return json_array
   end
 
-  def act_event_ids
+  def recurring_event_ids
     event_ids = []
-    actionable_events.each { |a_e| event_ids << a_e.actionable_id }
+    recurring_events.each { |recurring_event| event_ids << recurring_event.actionable_id }
     return event_ids
   end
 
   def daysInUse(actionable_id)
-    a_e = ActionableEvent.find_by(user_id: self.id, actionable_id: actionable_id)
+    a_e = RecurringEvent.find_by(user_id: self.id, actionable_id: actionable_id)
     days = Date.today - a_e.start_date
     return days.to_i
   end
@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   def event_days_hash
   # Note this currently only functions when event doesn't have multiple starts & stops (actionable_events) 
     event_days = {}
-    act_event_ids.each do |id|
+    recurring_event_ids.each do |id|
       event_days[id] = daysInUse(id) 
     end
     return event_days

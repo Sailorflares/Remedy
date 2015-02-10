@@ -10,10 +10,10 @@
           <h3><%= actionable.title %></h3>
           <p><%= actionable.text %></p>
           <p><%= actionable.conditions.first.name if actionable.conditions.first %></p>
-          <% if @user_actions.include?(actionable.id)%>
+          <% if @user_recurrences_ids.include?(actionable.id)%>
             <p> <%= @event_days_hash[actionable.id] %> Days in Use </p>
           <% else %>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".actionable-event-modal">Put it into action!</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".recurring-event-modal">Put it into action!</button>
           <% end %>  
         </div>
       </div>
@@ -22,13 +22,13 @@
 
 </div>
 
-<div class="modal fade actionable-event-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade recurring-event-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
-      <%= form_for @actionableevent, :url => create_actionable_event_path, :html => {:method => :post} do |f| %>
+      <%= form_for @recurringevent, :url => create_recurring_event_path, :html => {:method => :post} do |f| %>
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Add an Actionable Event!</h4>
+          <h4 class="modal-title">Add a Recurring Event!</h4>
         </div>
         <div class="modal-body">
             <%= f.label :days_between_events, "Frequency:" %>

@@ -11,18 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209001751) do
-
-  create_table "actionable_events", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "actionable_id"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.integer  "days_between_events"
-    t.string   "title"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-  end
+ActiveRecord::Schema.define(version: 20150210191753) do
 
   create_table "actionable_recurrences", force: :cascade do |t|
     t.integer  "days_between_recurrences"
@@ -72,6 +61,17 @@ ActiveRecord::Schema.define(version: 20150209001751) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "recurring_events", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "actionable_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "days_between_events"
+    t.string   "title"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "taggings", force: :cascade do |t|

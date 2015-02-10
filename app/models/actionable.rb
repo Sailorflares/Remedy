@@ -5,6 +5,6 @@ class Actionable < ActiveRecord::Base
   has_many :condition_actionables
   has_many :conditions, through: :condition_actionables
 
-  has_many :actionable_events
-  has_many :events, through: :actionable_events
+  has_many :recurring_events
+  has_many :events, through: :recurring_events
 end

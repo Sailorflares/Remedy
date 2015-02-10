@@ -1,4 +1,4 @@
-class ActionableEvent < ActiveRecord::Base
+class RecurringEvent < ActiveRecord::Base
   belongs_to :user
   belongs_to :actionable
 

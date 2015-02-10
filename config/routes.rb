@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   post 'articles/create' => 'articles#create', as: :create_article
   post 'actionables/create' => 'actionables#create', as: :create_actionable
   post 'conditions/create' => 'conditions#create', as: :create_condition
-  post 'actionable_events/create' => 'actionable_events#create', as: :create_actionable_event
+  post 'recurring_events/create' => 'recurring_events#create', as: :create_recurring_event
   post 'feelings/create' => 'feelings#create', as: :create_feeling
 
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
