@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   post 'conditions/create' => 'conditions#create', as: :create_condition
   post 'recurring_events/create' => 'recurring_events#create', as: :create_recurring_event
   post 'feelings/create' => 'feelings#create', as: :create_feeling
+  post 'check_ins/create' => 'check_ins#create', as: :create_check_in
 
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]

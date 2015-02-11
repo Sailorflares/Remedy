@@ -7,4 +7,6 @@ class Actionable < ActiveRecord::Base
 
   has_many :recurring_events
   has_many :events, through: :recurring_events
+
+  has_many :check_ins
 end

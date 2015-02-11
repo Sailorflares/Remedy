@@ -1,0 +1,26 @@
+<div class="col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Check-in</h3>
+    </div>
+    <div class="panel-body">
+      <%= form_for @check_in, :url => create_check_in_path, :html => {:method => :post} do |f| %>
+        <%= f.fields_for :actionable do |actionable_form| %>
+          <% @recurring_actionables.each do |actionable| %>
+            <%= check_box_tag "check_in[actionable_ids][]", actionable.id%>
+            <%= actionable.title %><br>
+          <% end %>
+        <% end %> 
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-md-4">  
+  <% @check_ins.each do |check_in| %>
+    <%= check_in.actionable_id %>
+    <%= check_in.date %>
+  <% end %>
+</div>

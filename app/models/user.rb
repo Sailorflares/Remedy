@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 
   has_many :feelings
 
+  has_many :check_ins
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
@@ -42,8 +44,8 @@ class User < ActiveRecord::Base
   end
 
   def daysInUse(actionable_id)
-    a_e = RecurringEvent.find_by(user_id: self.id, actionable_id: actionable_id)
-    days = Date.today - a_e.start_date
+    recurring_event = RecurringEvent.find_by(user_id: self.id, actionable_id: actionable_id)
+    days = Date.today - recurring_event.start_date
     return days.to_i
   end
 
@@ -54,6 +56,14 @@ class User < ActiveRecord::Base
       event_days[id] = daysInUse(id) 
     end
     return event_days
+  end
+
+  def recurring_actionables
+    actionables_array = []
+    actionables.each do |actionable|
+      actionables_array << actionable if recurring_event_ids.include?(actionable.id)
+    end
+    actionables_array
   end
 
 end
