@@ -1,3 +1,5 @@
+require 'pry'
+
 class User < ActiveRecord::Base
   has_many :user_articles
   has_many :articles, through: :user_articles
@@ -64,6 +66,26 @@ class User < ActiveRecord::Base
       actionables_array << actionable if recurring_event_ids.include?(actionable.id)
     end
     actionables_array
+  end
+
+  def graph_data(date)
+    data_array = [['Date']]
+    recurring_actionables.each do |actionable|
+      data_array[0] << actionable.title
+    end
+    data_array[0] << 'Feeling'
+    (Date.today-7..Date.today).each do |date|
+      day_data = [date.to_s]
+      check_in_array = CheckIn.where(user_id: id, date: date).pluck(:actionable_id)
+      recurring_actionables.each do |actionable|
+        check_in_array.include?(actionable.id) ? check_in_occurred = 1 : check_in_occurred = 0 
+        day_data << check_in_occurred
+      end
+      feeling = Feeling.find_by(user_id: id, date_feeling: date)
+      feeling ? day_data << feeling.rating : day_data << 0
+      data_array << day_data
+    end  
+    return data_array
   end
 
 end

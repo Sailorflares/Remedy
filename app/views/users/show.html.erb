@@ -4,16 +4,7 @@
 
   function drawVisualization() {
   
-    var data = google.visualization.arrayToDataTable([
-      ['Day', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Rating'],
-      ['Monday',1,1,1,0,0,5],
-      ['Tuesday',1,0,1,0,1,4],
-      ['Wednesday',1,0,0,1,0,8],
-      ['Thursday',0,0,0,0,0,6],
-      ['Friday',0,0,0,0,0,6],
-      ['Saturday',0,0,0,0,0,6],
-      ['Sunday',0,0,0,0,0,6],
-    ]);
+    var data = google.visualization.arrayToDataTable([["Date", "Flat Bridge (Glute muscles)", "Side-lying Hip (Hip Abductors)", "Foam Roll Hamstring Massage", "Vitamin B", "Feeling"], ["2015-02-04", 1, 1, 0, 0, 2], ["2015-02-05", 0, 1, 0, 1, 4], ["2015-02-06", 1, 1, 0, 0, 0], ["2015-02-07", 0, 0, 0, 0, 0], ["2015-02-08", 0, 0, 0, 0, 1], ["2015-02-09", 0, 1, 1, 0, 0], ["2015-02-10", 0, 0, 0, 0, 5], ["2015-02-11", 1, 1, 0, 1, 7]]);
 
     var options = {
       width: 1100,
@@ -21,7 +12,7 @@
       legend: { position: 'top', maxLines: 3},
       isStacked: true,
       seriesType: "bars",
-      series: {5: {type: "line"}},
+      series: {4: {type: "line"}},
       bar: {groupWidth: "90%"}
     };
 
