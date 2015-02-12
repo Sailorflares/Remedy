@@ -5,28 +5,29 @@
   </div>
   <div class="panel-body">
     <div id="show-actionable">
-  
-  <% @actionables.each do |actionable| %>
-    <div class="col-sm-6 col-md-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= actionable.title %></h3>
+      <% @actionables.each do |actionable| %>
+        <div class="col-sm-6 col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= actionable.title %></h3>
+            </div>
+            <div class="panel-body">
+              <p><%= actionable.text %></p>
+            </div>
+            <div class="panel-footer">
+              <%= actionable.conditions.first.name if actionable.conditions.first %>
+              <% if @user_recurrences_ids.include?(actionable.id)%>
+                <% @event_days_hash[actionable.id]%>
+              <% else %>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".recurring-event-modal">Put it into action!</button>
+              <% end %>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".article-modal">+</button><br>
+            </div>  
+          </div>
         </div>
-        <div class="panel-body">
-          <p><%= actionable.text %></p>
-        </div>
-        <div class="panel-footer">
-          <%= actionable.conditions.first.name if actionable.conditions.first %>
-          <% if @user_recurrences_ids.include?(actionable.id)%>
-            <% @event_days_hash[actionable.id]%>
-          <% else %>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".recurring-event-modal">Put it into action!</button>
-          <% end %>
-        </div>  
-      </div>
+      <% end %>   
     </div>
-  <% end %>   
-
+  </div>
 </div>
 
 <div class="modal fade recurring-event-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -80,5 +81,5 @@
     </div>
   </div>
 </div>
-  </div>
-</div>
+
+<%= render 'articles/module' %>

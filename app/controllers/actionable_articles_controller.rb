@@ -1,0 +1,2 @@
+class ActionableArticlesController < ApplicationController
+end

@@ -8,8 +8,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article.tag_list.add(params["article"]["tag_list"], :parse => true)
-    @article.save
+    @article = Article.find_or_create_by(link: params["article"]["link"])
     @article.users << current_user
     TitlesWorker.perform_async(@article.id)
     redirect_to home_url(current_user.id)
