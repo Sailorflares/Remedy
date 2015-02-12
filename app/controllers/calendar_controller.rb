@@ -8,5 +8,9 @@ class CalendarController < ApplicationController
       format.json { render json: events_json }
     end    
   end
+
+  def show
+    @event_days_hash = current_user.event_days_hash
+  end
   
 end

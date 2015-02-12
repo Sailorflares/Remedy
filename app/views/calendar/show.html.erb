@@ -1,0 +1,12 @@
+<script>
+  $(document).ready(function() {
+
+    $('#calendar').fullCalendar({
+      //loading: function(){ if done, delete spinning thing },
+      events: '/user/:id/calendar/events.json'
+    })
+
+  });
+</script>
+
+<div id='calendar'></div>

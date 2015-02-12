@@ -1,17 +1,48 @@
-<script>
-  $(document).ready(function() {
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawVisualization);
 
+  function drawVisualization() {
+  
+    var data = google.visualization.arrayToDataTable([
+      ['Day', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Rating'],
+      ['Monday',1,1,1,0,0,5],
+      ['Tuesday',1,0,1,0,1,4],
+      ['Wednesday',1,0,0,1,0,8],
+      ['Thursday',0,0,0,0,0,6],
+      ['Friday',0,0,0,0,0,6],
+      ['Saturday',0,0,0,0,0,6],
+      ['Sunday',0,0,0,0,0,6],
+    ]);
 
-    $('#calendar').fullCalendar({
-      //loading: function(){ if done, delete spinning thing },
-      events: '/user/:id/calendar/events.json'
-    })
+    var options = {
+      width: 1100,
+      height: 400,
+      legend: { position: 'top', maxLines: 3},
+      isStacked: true,
+      seriesType: "bars",
+      series: {5: {type: "line"}},
+      bar: {groupWidth: "90%"}
+    };
 
-  });
+    var chart = new google.visualization.ComboChart(document.getElementById('graph'));
+    chart.draw(data, options);
+  }
 </script>
+
 <h1>Home Page</h1>
 
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Track Your Progress</h3>
+  </div>
+  <div class="panel-body">  
+    <div id="graph"></div>
+  </div>
+</div>
 
+<%= render 'check_ins/box' %> 
+<%= render 'feelings/box' %>
 
 <div class="modal fade condition-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
@@ -49,23 +80,6 @@
     </div>
   </div>
 
-  <%= render 'check_ins/box' %> 
-  <%= render 'feelings/box' %>
-
-  <div class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div id='calendar'></div>
-      </div>
-    </div>
-  </div>
-
 </div>
-
-<ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#">Home</a></li>
-  <li role="presentation"><a href="#">Profile</a></li>
-  <li role="presentation"><a href="#">Messages</a></li>
-</ul>
 
 <%= render 'actionables/box' %>

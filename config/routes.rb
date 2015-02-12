@@ -12,10 +12,10 @@ Rails.application.routes.draw do
   get 'conditions', to: 'conditions#index', as: :conditions_index
   get 'conditions/:id', to: 'conditions#show', as: 'condition'
   
+  get 'user/:id/calendar', to: 'calendar#show', as: :calendar
+  get 'user/:id/calendar/events', to: 'calendar#events_calendar', as: :events_calendar
 
-  get '/actions', to: 'actionables#index'
-
-  get '/user/:id/calendar/events', to: 'calendar#events_calendar', as: :events_calendar
+  get '/actions', to: 'actionables#index' 
 
   post 'articles/create' => 'articles#create', as: :create_article
   post 'actionables/create' => 'actionables#create', as: :create_actionable
